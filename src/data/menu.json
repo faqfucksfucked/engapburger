@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Engap Burger",
+    "category": "Burgers",
+    "description": "Our signature beef burger with melted cheese and fresh vegetables in a soft sesame bun.",
+    "price": 35000,
+    "image": "/images/burger.jpg",
+    "illustration": "burger",
+    "tag": "Bestseller"
+  },
+  {
+    "name": "Birthday Cake",
+    "category": "Cakes",
+    "description": "A rich celebration cake, made to order. Message us on WhatsApp a day ahead.",
+    "price": 180000,
+    "image": "/images/cake.jpg",
+    "illustration": "cake",
+    "tag": "Order 1 day ahead"
+  },
+  {
+    "name": "Bomboloni",
+    "category": "Pastries",
+    "description": "Soft Italian-style doughnut, filled and rolled in sugar.",
+    "price": 30000,
+    "image": "/images/bombo.jpg",
+    "illustration": "bombo"
+  }
+]

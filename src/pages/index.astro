@@ -1,0 +1,143 @@
+---
+import Base from '../layouts/Base.astro';
+import Illustrations from '../components/Illustrations.astro';
+import site from '../data/site.json';
+import menu from '../data/menu.json';
+
+const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
+const wa = (number: string) => `https://wa.me/${number}?text=${encodeURIComponent(site.whatsappMessage)}`;
+const viewBoxes: Record<string, string> = {
+  burger: '0 0 120 100',
+  cake: '0 0 120 110',
+  bombo: '0 0 120 100',
+};
+const year = new Date().getFullYear();
+---
+<Base>
+  <Illustrations />
+
+  <header class="top wrap">
+    <span class="left">{site.hoursShort}</span>
+    <a class="mark" href="#top" aria-label="Engap Bakery, back to top"><b>ENGAP</b><i>bakery</i></a>
+    <span class="nav-r">
+      <a class="linkbtn hide-s" href="#visit">Find us</a>
+      <button class="linkbtn" id="openNav" aria-expanded="false" aria-controls="nav">Menu</button>
+    </span>
+  </header>
+
+  <main class="wrap" id="top">
+    <section class="hero">
+      <svg class="doodle d1" viewBox="0 0 140 130" aria-hidden="true"><use href="#stall" /></svg>
+      <svg class="doodle d2" viewBox="0 0 120 110" aria-hidden="true"><use href="#cake" /></svg>
+      <svg class="doodle d3" viewBox="0 0 120 100" aria-hidden="true"><use href="#burger" /></svg>
+      <svg class="doodle d4" viewBox="0 0 120 100" aria-hidden="true"><use href="#bombo" /></svg>
+      <svg class="doodle d6" viewBox="0 0 100 110" aria-hidden="true"><use href="#cup" /></svg>
+      <svg class="doodle d7" viewBox="0 0 40 120" aria-hidden="true"><use href="#whisk" /></svg>
+      <h1>Good Burgers, Sweet Cakes, Made by Hand.</h1>
+      <p class="sub">{site.tagline} Have a look at the menu, then message us on WhatsApp.</p>
+      <div class="ctas">
+        <a class="btn" href="#menu">See the menu</a>
+        <a class="btn ghost" href="#visit">Find us</a>
+      </div>
+    </section>
+
+    <section class="strip" aria-label="Quick info">
+      <div><b>Engap Burger</b><span>Our signature, {rupiah(menu[0].price)}</span></div>
+      <div><b>Birthday cakes</b><span>Message us on WhatsApp a day ahead</span></div>
+      <div><b>Open daily</b><span>08:00 to 19:00 · {site.address}</span></div>
+    </section>
+
+    <section id="menu">
+      <h2 class="big">Our menu</h2>
+      <div class="grid">
+        {menu.map((item) => (
+          <article class="item">
+            <div class="pic">
+              <img src={item.image} alt={item.name} width="900" height="900" loading="lazy" />
+              {item.tag && <span class="tag">{item.tag}</span>}
+              <svg class="sticker" viewBox={viewBoxes[item.illustration]} aria-hidden="true"><use href={`#${item.illustration}`} /></svg>
+            </div>
+            <div class="row"><h3>{item.name}</h3><span class="price">{rupiah(item.price)}</span></div>
+            <p>{item.description}</p>
+          </article>
+        ))}
+      </div>
+      <p class="menu-note">Prices in Rupiah. Ask us on WhatsApp about today's stock.</p>
+    </section>
+
+    <section class="about" id="about">
+      <img class="photo" src="/images/about.jpg" alt="A burger wrapped in paper with fries and drinks" width="900" height="1100" loading="lazy" />
+      <div>
+        <h2 class="big">About us</h2>
+        <p>Engap started with one thing: a good quality burger, made fresh and wrapped by hand. Our customers kept coming back, so we added birthday cakes and soft, sugar-rolled bomboloni.</p>
+        <p>Everything is made to order in small batches. Send us a message and we'll have it ready for you.</p>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <a class="map" href={site.mapsUrl} target="_blank" rel="noopener" aria-label="Open Engap Bakery in Google Maps">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="300" fill="#FBE8CB" />
+          <g stroke="#E7CFAE" stroke-width="14" fill="none" stroke-linecap="round">
+            <path d="M-10 90 C120 110 260 70 410 100" /><path d="M150 -10 C160 120 140 200 170 310" /><path d="M-10 230 C100 210 300 250 410 220" />
+          </g>
+          <g stroke="#30121D" stroke-width="1.4" fill="none" stroke-dasharray="4 5">
+            <path d="M-10 90 C120 110 260 70 410 100" /><path d="M150 -10 C160 120 140 200 170 310" />
+          </g>
+          <circle cx="300" cy="170" r="26" fill="#7FA35A" opacity=".35" />
+          <g transform="translate(158 98)">
+            <path d="M0 0 C-14 -16 -14 -34 0 -40 C14 -34 14 -16 0 0Z" fill="#BA4B27" stroke="#30121D" stroke-width="1.6" />
+            <circle cy="-26" r="5" fill="#FFF2DD" />
+          </g>
+          <text x="172" y="78" font-family="Courier Prime, monospace" font-size="13" fill="#30121D">Engap Bakery</text>
+          <text x="20" y="80" font-family="Courier Prime, monospace" font-size="10" fill="#6B4A4F">Jl. Kalisari 3</text>
+          <text x="250" y="280" font-family="Courier Prime, monospace" font-size="11" fill="#BA4B27">tap to open in Maps →</text>
+        </svg>
+      </a>
+      <div>
+        <h2 class="big">Visit us</h2>
+        <dl class="info">
+          <dt>Address</dt><dd>{site.address}</dd>
+          <dt>Hours</dt><dd>{site.hours}</dd>
+          <dt>WhatsApp</dt><dd>{site.whatsapp.map((w, i) => <>{i > 0 && <br />}{w.label}</>)}</dd>
+          <dt>Instagram</dt><dd><a href={site.instagram.url} target="_blank" rel="noopener">{site.instagram.handle}</a></dd>
+        </dl>
+        <div class="contact-btns">
+          {site.whatsapp.map((w, i) => (
+            <a class={i === 0 ? 'btn' : 'btn ghost'} href={wa(w.number)} target="_blank" rel="noopener">WhatsApp {w.label.slice(0, 4)}</a>
+          ))}
+          <a class="btn ghost" href={site.mapsUrl} target="_blank" rel="noopener">Open in Google Maps</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© {year} {site.name} · {site.address} · {site.hoursShort}</span>
+      <span>Photos from <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a> (see CREDITS.md)</span>
+    </footer>
+  </main>
+
+  <div class="overlay" id="nav" hidden role="dialog" aria-modal="true" aria-label="Site menu">
+    <button class="close" id="closeNav">Close</button>
+    <ul>
+      <li><a href="#menu" data-close>Our menu <span aria-hidden="true">→</span></a></li>
+      <li><a href="#about" data-close>About us <span aria-hidden="true">→</span></a></li>
+      <li><a href="#visit" data-close>Visit &amp; contact <span aria-hidden="true">→</span></a></li>
+    </ul>
+    <small>{site.instagram.handle} · {site.whatsapp[0].label}</small>
+  </div>
+
+  <script>
+    const nav = document.getElementById('nav')!;
+    const openBtn = document.getElementById('openNav')!;
+    const setOpen = (open: boolean) => {
+      nav.hidden = !open;
+      openBtn.setAttribute('aria-expanded', String(open));
+      if (open) (nav.querySelector('a') as HTMLElement | null)?.focus();
+    };
+    openBtn.addEventListener('click', () => setOpen(true));
+    document.getElementById('closeNav')!.addEventListener('click', () => setOpen(false));
+    nav.querySelectorAll('[data-close]').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+  </script>
+</Base>
