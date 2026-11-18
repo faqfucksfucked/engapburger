@@ -42,8 +42,8 @@ const year = new Date().getFullYear();
     </section>
 
     <section class="strip" aria-label="Quick info">
-      <div><b>Engap Burger</b><span>Our signature, {rupiah(menu[0].price)}</span></div>
-      <div><b>Birthday cakes</b><span>Message us on WhatsApp a day ahead</span></div>
+      <div><b>Order on WhatsApp</b><span>{site.whatsapp.map((w) => w.label).join(' · ')}</span></div>
+      <div><b>Follow us</b><span><a href={site.instagram.url} target="_blank" rel="noopener">{site.instagram.handle}</a> on Instagram</span></div>
       <div><b>Open daily</b><span>08:00 to 19:00 · {site.address}</span></div>
     </section>
 
