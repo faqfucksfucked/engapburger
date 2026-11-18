@@ -1,0 +1,14 @@
+{
+  "name": "Engap Bakery",
+  "tagline": "Good quality burgers, birthday cakes and bomboloni, made by hand.",
+  "address": "Jl. Kalisari 3, Jakarta",
+  "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jl.+Kalisari+3+Jakarta",
+  "hours": "Open daily, 08:00 to 19:00",
+  "hoursShort": "Open daily 08:00 to 19:00",
+  "instagram": { "handle": "@engapburger", "url": "https://www.instagram.com/engapburger/" },
+  "whatsapp": [
+    { "label": "0856 9272 2071", "number": "6285692722071" },
+    { "label": "0838 7687 7566", "number": "6283876877566" }
+  ],
+  "whatsappMessage": "Hi Engap Bakery, I'd like to order:"
+}
